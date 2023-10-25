@@ -1,18 +1,13 @@
 package ru.netology
 
 fun main() {
-    val purchaseAmount = 12000 // сумма покупки
-    val isRegularCustomer = true // признак постоянного покупателя
+    val purchaseAmount = 100
+    val isRegularCustomer = true
+    var discount = 0
 
-    var discount = when {
-        purchaseAmount <= 1000 -> 0 // если сумма покупки <= 1000, то скидка 0
-        purchaseAmount <= 10000 -> 100 // если сумма покупки <= 10000, то скидка 100
-        else -> (purchaseAmount * 0.05).toInt() // иначе скидка 5%
-    }
-
-    // Проверяем, является ли покупатель постоянным и добавляем 1% скидки
     if (isRegularCustomer) {
-        discount += (purchaseAmount * 0.01).toInt()
+        discount = (purchaseAmount * 0.05).toInt() // применяем первую скидку 5%
+        discount += ((purchaseAmount + discount) * 0.01).toInt() // применяем вторую скидку 1% к сумме за вычетом первой скидки
     }
 
     val finalAmount = purchaseAmount - discount
